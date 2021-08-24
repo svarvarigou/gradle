@@ -71,7 +71,7 @@ public class DefaultBuildWorkGraph implements BuildWorkGraph {
             controller.prepareToScheduleTasks();
             controller.populateWorkGraph(taskGraph -> {
                 for (Task task : tasks) {
-                    taskGraph.addEntryTasks(Collections.singletonList(task));
+                    taskGraph.addEntryTasks(Collections.singletonList(task), -1);
                 }
             });
         });

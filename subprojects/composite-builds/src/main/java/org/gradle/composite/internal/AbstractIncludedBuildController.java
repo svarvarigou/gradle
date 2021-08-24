@@ -185,7 +185,7 @@ abstract class AbstractIncludedBuildController implements IncludedBuildControlle
 
     private void visitDependenciesOf(TaskInternal task, Consumer<TaskInternal> consumer) {
         TaskNodeFactory taskNodeFactory = ((GradleInternal) task.getProject().getGradle()).getServices().get(TaskNodeFactory.class);
-        TaskNode node = taskNodeFactory.getOrCreateNode(task);
+        TaskNode node = taskNodeFactory.getOrCreateNode(task, -1);
         for (Node dependency : node.getAllSuccessors()) {
             if (dependency instanceof TaskNode) {
                 consumer.accept(((TaskNode) dependency).getTask());

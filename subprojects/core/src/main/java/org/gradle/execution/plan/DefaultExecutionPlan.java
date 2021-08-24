@@ -133,11 +133,11 @@ public class DefaultExecutionPlan implements ExecutionPlan {
     }
 
     @Override
-    public void addEntryTasks(Collection<? extends Task> tasks) {
+    public void addEntryTasks(Collection<? extends Task> tasks, int ordinal) {
         final Deque<Node> queue = new ArrayDeque<>();
 
         for (Task task : sorted(tasks)) {
-            TaskNode node = taskNodeFactory.getOrCreateNode(task);
+            TaskNode node = taskNodeFactory.getOrCreateNode(task, ordinal);
             if (node.isMustNotRun()) {
                 requireWithDependencies(node);
             } else if (filter.isSatisfiedBy(task)) {
@@ -358,6 +358,7 @@ public class DefaultExecutionPlan implements ExecutionPlan {
             maybeNodesReady |= node.updateAllDependenciesComplete() && node.isReady();
         }
         this.dependenciesWhichRequireMonitoring.addAll(dependenciesWhichRequireMonitoring);
+        resolveKnownMutations();
     }
 
     private void maybeRemoveProcessedShouldRunAfterEdge(Deque<GraphEdge> walkedShouldRunAfterEdges, Node node) {
@@ -568,13 +569,14 @@ public class DefaultExecutionPlan implements ExecutionPlan {
         if (!maybeNodesReady) {
             return null;
         }
+
         Iterator<Node> iterator = executionQueue.iterator();
         boolean foundReadyNode = false;
         while (iterator.hasNext()) {
             Node node = iterator.next();
             if (node.isReady() && node.allDependenciesComplete()) {
                 foundReadyNode = true;
-                MutationInfo mutations = getResolvedMutationInfo(node);
+                MutationInfo mutations = getResolvedMutationInfo(node, true);
 
                 if (!tryAcquireLocksForNode(node, workerLease, mutations)) {
                     resourceLockState.releaseLocks();
@@ -615,6 +617,8 @@ public class DefaultExecutionPlan implements ExecutionPlan {
             LOGGER.debug("Node {} cannot run with currently running nodes {}", node, runningNodes);
             return false;
         } else if (doesDestroyNotYetConsumedOutputOfAnotherNode(node, mutations.destroyablePaths)) {
+            return false;
+        } else if (mutatesPathOfNodeAddedEarlier(node)) {
             return false;
         }
         return true;
@@ -659,15 +663,23 @@ public class DefaultExecutionPlan implements ExecutionPlan {
         node.getResourcesToLock().forEach(ResourceLock::unlock);
     }
 
-    private MutationInfo getResolvedMutationInfo(Node node) {
+    private MutationInfo getResolvedMutationInfo(Node node, boolean finalize) {
         MutationInfo mutations = node.getMutationInfo();
-        if (!mutations.resolved) {
-            node.resolveMutations();
+        if (!mutations.finalized) {
+            node.resolveMutations(finalize);
             mutations.hasValidationProblem = nodeValidator.hasValidationProblems(node);
             outputHierarchy.recordNodeAccessingLocations(node, mutations.outputPaths);
             destroyableHierarchy.recordNodeAccessingLocations(node, mutations.destroyablePaths);
         }
         return mutations;
+    }
+
+    private void resolveKnownMutations() {
+        for (Node node : executionQueue) {
+            if (node.isReady()) {
+                getResolvedMutationInfo(node, false);
+            }
+        }
     }
 
     private boolean allProjectsLocked() {
@@ -762,6 +774,41 @@ public class DefaultExecutionPlan implements ExecutionPlan {
         return reachable;
     }
 
+    private boolean mutatesPathOfNodeAddedEarlier(Node node) {
+        if (!(node instanceof TaskNode)) {
+            return false;
+        }
+
+        // If this is a destroyer task, compare its destroyed paths to producers of those paths
+        if (!node.getMutationInfo().destroyablePaths.isEmpty()) {
+            for (String destroyablePath : node.getMutationInfo().destroyablePaths) {
+                ImmutableSet<Node> producersThatOverlap = outputHierarchy.getNodesAccessing(destroyablePath);
+                if (producersThatOverlap.stream().anyMatch(n -> taskShouldRunEarlier(node, n))) {
+                    return true;
+                }
+            }
+        }
+
+        // If this is a producer task, compare its produced paths to destroyers of those paths
+        if (!node.getMutationInfo().outputPaths.isEmpty()) {
+            for (String outputPath : node.getMutationInfo().outputPaths) {
+                ImmutableSet<Node> destroyersThatOverlap = destroyableHierarchy.getNodesAccessing(outputPath);
+                if (destroyersThatOverlap.stream().anyMatch(n -> taskShouldRunEarlier(node, n))) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    // Returns true if node2 was added to the task graph earlier than node1
+    private boolean taskShouldRunEarlier(Node node1, Node node2) {
+        return !node2.isComplete()
+            && node2 instanceof TaskNode && node1 instanceof TaskNode
+            && ((TaskNode) node1).getOrdinal() > ((TaskNode) node2).getOrdinal();
+    }
+
     private void recordNodeExecutionStarted(Node node) {
         runningNodes.add(node);
     }
@@ -798,6 +845,7 @@ public class DefaultExecutionPlan implements ExecutionPlan {
 
                 runningNodes.remove(node);
                 node.finishExecution(this::recordNodeCompleted);
+                //resolveAllReadyMutations(node.getMutationInfo().consumingNodes);
             } else {
                 LOGGER.debug("Already completed node {} reported as finished executing", node);
             }

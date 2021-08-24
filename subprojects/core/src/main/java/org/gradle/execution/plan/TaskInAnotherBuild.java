@@ -34,21 +34,23 @@ import java.util.List;
 public class TaskInAnotherBuild extends TaskNode {
     public static TaskInAnotherBuild of(
         TaskInternal task,
-        IncludedBuildTaskGraph taskGraph
+        IncludedBuildTaskGraph taskGraph,
+        int ordinal
     ) {
         BuildIdentifier targetBuild = buildIdentifierOf(task);
         IncludedBuildTaskResource taskResource = taskGraph.locateTask(targetBuild, task);
-        return new TaskInAnotherBuild(task.getIdentityPath(), task.getPath(), targetBuild, taskResource);
+        return new TaskInAnotherBuild(task.getIdentityPath(), task.getPath(), targetBuild, taskResource, ordinal);
     }
 
     public static TaskInAnotherBuild of(
         String taskPath,
         BuildIdentifier targetBuild,
-        IncludedBuildTaskGraph taskGraph
+        IncludedBuildTaskGraph taskGraph,
+        int ordinal
     ) {
         IncludedBuildTaskResource taskResource = taskGraph.locateTask(targetBuild, taskPath);
         Path taskIdentityPath = Path.path(targetBuild.getName()).append(Path.path(taskPath));
-        return new TaskInAnotherBuild(taskIdentityPath, taskPath, targetBuild, taskResource);
+        return new TaskInAnotherBuild(taskIdentityPath, taskPath, targetBuild, taskResource, ordinal);
     }
 
     protected IncludedBuildTaskResource.State state = IncludedBuildTaskResource.State.WAITING;
@@ -57,7 +59,8 @@ public class TaskInAnotherBuild extends TaskNode {
     private final BuildIdentifier targetBuild;
     private final IncludedBuildTaskResource target;
 
-    protected TaskInAnotherBuild(Path taskIdentityPath, String taskPath, BuildIdentifier targetBuild, IncludedBuildTaskResource target) {
+    protected TaskInAnotherBuild(Path taskIdentityPath, String taskPath, BuildIdentifier targetBuild, IncludedBuildTaskResource target, int ordinal) {
+        super(ordinal);
         this.taskIdentityPath = taskIdentityPath;
         this.taskPath = taskPath;
         this.targetBuild = targetBuild;
@@ -169,7 +172,7 @@ public class TaskInAnotherBuild extends TaskNode {
     }
 
     @Override
-    public void resolveMutations() {
+    public void resolveMutations(boolean finalize) {
         // Assume for now that no task in the consuming build will destroy the outputs of this task or overlaps with this task
     }
 

@@ -66,7 +66,7 @@ class TestExecutionBuildConfigurationAction implements BuildConfigurationAction 
         allTestTasksToRun.addAll(configureBuildForInternalJvmTestRequest(gradleInternal, testExecutionRequest));
         allTestTasksToRun.addAll(configureBuildForTestTasks(testExecutionRequest));
         configureTestTasks(allTestTasksToRun);
-        gradle.getTaskGraph().addEntryTasks(allTestTasksToRun);
+        gradle.getTaskGraph().addEntryTasks(allTestTasksToRun, 0);
     }
 
     private void configureTestTasks(Set<Test> allTestTasksToRun) {

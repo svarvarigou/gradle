@@ -56,7 +56,7 @@ public interface ExecutionPlan extends Describable {
 
     void addNodes(Collection<? extends Node> nodes);
 
-    void addEntryTasks(Collection<? extends Task> tasks);
+    void addEntryTasks(Collection<? extends Task> tasks, int ordinal);
 
     void determineExecutionPlan();
 

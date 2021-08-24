@@ -37,7 +37,7 @@ public interface TaskExecutionGraphInternal extends TaskExecutionGraph {
      *
      * <p>Does not add the dependencies of the tasks to this graph.</p>
      */
-    void addEntryTasks(Iterable<? extends Task> tasks);
+    void addEntryTasks(Iterable<? extends Task> tasks, int ordinal);
 
     /**
      * Adds the given nodes to this graph.

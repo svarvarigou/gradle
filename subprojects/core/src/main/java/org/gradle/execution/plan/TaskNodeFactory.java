@@ -64,13 +64,13 @@ public class TaskNodeFactory {
         return nodes.keySet();
     }
 
-    public TaskNode getOrCreateNode(Task task) {
+    public TaskNode getOrCreateNode(Task task, int ordinal) {
         TaskNode node = nodes.get(task);
         if (node == null) {
             if (task.getProject().getGradle() == thisBuild) {
-                node = new LocalTaskNode((TaskInternal) task, new DefaultWorkValidationContext(documentationRegistry, typeOriginInspectorFactory.forTask(task)));
+                node = new LocalTaskNode((TaskInternal) task, new DefaultWorkValidationContext(documentationRegistry, typeOriginInspectorFactory.forTask(task)), ordinal);
             } else {
-                node = TaskInAnotherBuild.of((TaskInternal) task, taskGraph);
+                node = TaskInAnotherBuild.of((TaskInternal) task, taskGraph, ordinal);
             }
             nodes.put(task, node);
         }

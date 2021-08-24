@@ -132,7 +132,7 @@ public class DefaultTaskExecutionGraph implements TaskExecutionGraphInternal {
     }
 
     @Override
-    public void addEntryTasks(Iterable<? extends Task> tasks) {
+    public void addEntryTasks(Iterable<? extends Task> tasks, int ordinal) {
         assert tasks != null;
 
         final Timer clock = Time.startTimer();
@@ -143,7 +143,7 @@ public class DefaultTaskExecutionGraph implements TaskExecutionGraphInternal {
             requestedTasks.add(task);
         }
 
-        executionPlan.addEntryTasks(taskSet);
+        executionPlan.addEntryTasks(taskSet, ordinal);
         graphState = GraphState.DIRTY;
 
         LOGGER.debug("Timing: Creating the DAG took {}", clock.getElapsed());

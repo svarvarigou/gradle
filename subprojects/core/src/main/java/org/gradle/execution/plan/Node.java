@@ -280,7 +280,7 @@ public abstract class Node implements Comparable<Node> {
         return mutationInfo;
     }
 
-    public abstract void resolveMutations();
+    public abstract void resolveMutations(boolean finalize);
 
     public abstract boolean isPublicNode();
 
