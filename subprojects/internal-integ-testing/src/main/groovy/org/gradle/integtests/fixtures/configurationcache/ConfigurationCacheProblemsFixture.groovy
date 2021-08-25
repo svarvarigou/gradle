@@ -23,7 +23,6 @@ import org.gradle.api.Action
 import org.gradle.api.internal.DocumentationRegistry
 import org.gradle.integtests.fixtures.executer.ExecutionFailure
 import org.gradle.integtests.fixtures.executer.ExecutionResult
-import org.gradle.integtests.fixtures.executer.GradleExecuter
 import org.gradle.integtests.fixtures.executer.LogContent
 import org.gradle.internal.logging.ConsoleRenderer
 import org.gradle.test.fixtures.file.TestFile
@@ -49,11 +48,9 @@ final class ConfigurationCacheProblemsFixture {
 
     protected static final String PROBLEMS_REPORT_HTML_FILE_NAME = "configuration-cache-report.html"
 
-    private final GradleExecuter executer
     private final File rootDir
 
-    ConfigurationCacheProblemsFixture(GradleExecuter executer, File rootDir) {
-        this.executer = executer
+    ConfigurationCacheProblemsFixture(File rootDir) {
         this.rootDir = rootDir
     }
 
@@ -282,11 +279,7 @@ final class ConfigurationCacheProblemsFixture {
         def expectReport = totalProblemCount > 0 || uniqueProblemCount > 0
         def reportDir = resolveConfigurationCacheReportDirectory(rootDir, output)
         if (expectReport) {
-            assertThat("HTML report URI not found", reportDir, notNullValue())
-            assertTrue("HTML report directory not found '$reportDir'", reportDir.isDirectory())
-            def htmlFile = reportDir.file(PROBLEMS_REPORT_HTML_FILE_NAME)
-            assertTrue("HTML report HTML file not found in '$reportDir'", htmlFile.isFile())
-            Map<String, Object> jsModel = readJsModelFrom(htmlFile)
+            Map<String, Object> jsModel = jsModelForReportDir(reportDir)
             assertThat(
                 "HTML report JS model has wrong number of total problem(s)",
                 numberOfProblemsIn(jsModel),
@@ -300,6 +293,14 @@ final class ConfigurationCacheProblemsFixture {
         } else {
             assertThat("Unexpected HTML report URI found", reportDir, nullValue())
         }
+    }
+
+    static Map<String, Object> jsModelForReportDir(TestFile reportDir) {
+        assertThat("HTML report URI not found", reportDir, notNullValue())
+        assertTrue("HTML report directory not found '$reportDir'", reportDir.isDirectory())
+        def htmlFile = reportDir.file(PROBLEMS_REPORT_HTML_FILE_NAME)
+        assertTrue("HTML report HTML file not found in '$reportDir'", htmlFile.isFile())
+        readJsModelFrom(htmlFile)
     }
 
     private static Map<String, Object> readJsModelFrom(File reportFile) {

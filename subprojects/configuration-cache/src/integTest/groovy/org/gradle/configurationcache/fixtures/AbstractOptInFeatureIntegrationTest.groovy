@@ -32,7 +32,7 @@ abstract class AbstractOptInFeatureIntegrationTest extends AbstractIntegrationSp
         // Verify that the previous test cleaned up state correctly
         assert System.getProperty(StartParameterBuildOptions.ConfigurationCacheOption.PROPERTY_NAME) == null
         assert System.getProperty(StartParameterBuildOptions.IsolatedProjectsOption.PROPERTY_NAME) == null
-        problems = new ConfigurationCacheProblemsFixture(executer, testDirectory)
+        problems = new ConfigurationCacheProblemsFixture(testDirectory)
     }
 
     def cleanup() {
