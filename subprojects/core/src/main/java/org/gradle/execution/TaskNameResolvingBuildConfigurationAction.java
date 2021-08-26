@@ -44,10 +44,9 @@ public class TaskNameResolvingBuildConfigurationAction implements BuildConfigura
         List<TaskExecutionRequest> taskParameters = gradle.getStartParameter().getTaskRequests();
         for (TaskExecutionRequest taskParameter : taskParameters) {
             List<TaskSelection> taskSelections = commandLineTaskParser.parseTasks(taskParameter);
-            int order = 0;
             for (TaskSelection taskSelection : taskSelections) {
                 LOGGER.info("Selected primary task '{}' from project {}", taskSelection.getTaskName(), taskSelection.getProjectPath());
-                taskGraph.addEntryTasks(taskSelection.getTasks(), order++);
+                taskGraph.addEntryTasks(taskSelection.getTasks());
             }
         }
 

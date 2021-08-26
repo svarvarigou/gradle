@@ -48,6 +48,7 @@ import static org.gradle.internal.snapshot.CaseSensitivity.CASE_SENSITIVE
 class DefaultExecutionPlanParallelTest extends AbstractExecutionPlanSpec {
 
     FileSystem fs = NativeServicesTestFixture.instance.get(FileSystem)
+    int ordinal = 0
 
     DefaultExecutionPlan executionPlan
     def lease = Stub(WorkerLeaseRegistry.WorkerLease)
@@ -505,7 +506,7 @@ class DefaultExecutionPlanParallelTest extends AbstractExecutionPlanSpec {
     }
 
     private void destroyerRunsFirst(Task producer, Task consumer, Task destroyer) {
-        addToGraphAndPopulate(destroyer)
+        addToGraph(destroyer)
         addToGraphAndPopulate(producer, consumer)
 
         def destroyerInfo = selectNextTaskNode()
@@ -561,6 +562,42 @@ class DefaultExecutionPlanParallelTest extends AbstractExecutionPlanSpec {
         destroyerRunsFirst(a, c, b)
     }
 
+    def "a task that destroys the output of a task and has a dependency in another project runs first if it is ordered first"() {
+        given:
+        def projectA = project(project, "a")
+        Task producer = task("producer", project: projectA, type: AsyncWithOutputDirectory)
+        _ * producer.outputDirectory >> file("inputDir")
+        def projectC = project(project, "c")
+        Task dependency = task("dependency", project: projectC, type: AsyncWithDestroysFile)
+        _ * dependency.destroysFile >> file("someOtherDir")
+        def projectB = project(project, "b")
+        Task destroyer = task("destroyer", project: projectB, type: AsyncWithDestroysFile, dependsOn: [dependency])
+        _ * destroyer.destroysFile >> file("inputDir").file("inputSubdir").file("foo")
+
+        when:
+        addToGraph(destroyer)
+        addToGraphAndPopulate(producer)
+
+        then:
+        def dependencyNode = selectNextTaskNode()
+        dependencyNode.task == dependency
+        selectNextTaskNode() == null
+
+        when:
+        executionPlan.finishedExecuting(dependencyNode)
+
+        then:
+        def destroyerNode = selectNextTaskNode()
+        destroyerNode.task == destroyer
+        selectNextTaskNode() == null
+
+        when:
+        executionPlan.finishedExecuting(destroyerNode)
+
+        then:
+        selectNextTask() == producer
+    }
+
     def "finalizer runs after the last task to be finalized"() {
         given:
         def projectA = project(project, "a")
@@ -603,9 +640,8 @@ class DefaultExecutionPlanParallelTest extends AbstractExecutionPlanSpec {
         Task otherTaskWithDependency = task("otherTaskWithDependency", type: Async, dependsOn: [dependency])
 
         when:
-        executionPlan.addEntryTasks([finalized])
-        executionPlan.addEntryTasks([otherTaskWithDependency])
-        executionPlan.determineExecutionPlan()
+        addToGraph(finalized)
+        addToGraphAndPopulate(otherTaskWithDependency)
 
         and:
         def finalizedNode = selectNextTaskNode()
@@ -648,9 +684,8 @@ class DefaultExecutionPlanParallelTest extends AbstractExecutionPlanSpec {
         Task mustRunAfter = task("mustRunAfter", type: Async, mustRunAfter: [finalizer])
 
         when:
-        executionPlan.addEntryTasks([finalized])
-        executionPlan.addEntryTasks([mustRunAfter])
-        executionPlan.determineExecutionPlan()
+        addToGraph(finalized)
+        addToGraphAndPopulate(mustRunAfter)
 
         and:
         def dependencyNode = selectNextTaskNode()
@@ -684,9 +719,8 @@ class DefaultExecutionPlanParallelTest extends AbstractExecutionPlanSpec {
         Task mustRunAfter = task("mustRunAfter", type: Async, mustRunAfter: [finalizer])
 
         when:
-        executionPlan.addEntryTasks([finalized])
-        executionPlan.addEntryTasks([mustRunAfter])
-        executionPlan.determineExecutionPlan()
+        addToGraph(finalized)
+        addToGraphAndPopulate(mustRunAfter)
 
         and:
         def dependencyNode = selectNextTaskNode()
@@ -752,6 +786,12 @@ class DefaultExecutionPlanParallelTest extends AbstractExecutionPlanSpec {
 
         when:
         addToGraphAndPopulate(second, first)
+
+        then:
+        1 * nodeValidator.hasValidationProblems({ LocalTaskNode node -> node.task == first }) >> true
+        1 * nodeValidator.hasValidationProblems({ LocalTaskNode node -> node.task == second }) >> false
+
+        when:
         def invalidTaskNode = selectNextTaskNode()
 
         then:
@@ -780,6 +820,12 @@ class DefaultExecutionPlanParallelTest extends AbstractExecutionPlanSpec {
 
         when:
         addToGraphAndPopulate(second, first)
+
+        then:
+        1 * nodeValidator.hasValidationProblems({ LocalTaskNode node -> node.task == first }) >> false
+        1 * nodeValidator.hasValidationProblems({ LocalTaskNode node -> node.task == second }) >> true
+
+        when:
         def validTaskNode = selectNextTaskNode()
 
         then:
@@ -815,6 +861,13 @@ class DefaultExecutionPlanParallelTest extends AbstractExecutionPlanSpec {
 
         when:
         addToGraphAndPopulate(broken, invalid, regular)
+
+        then:
+        1 * nodeValidator.hasValidationProblems({ LocalTaskNode node -> node.task == broken }) >> false
+        1 * nodeValidator.hasValidationProblems({ LocalTaskNode node -> node.task == invalid }) >> true
+        1 * nodeValidator.hasValidationProblems({ LocalTaskNode node -> node.task == regular }) >> false
+
+        when:
         def firstTaskNode = selectNextTaskNode()
 
         then:
@@ -866,8 +919,12 @@ class DefaultExecutionPlanParallelTest extends AbstractExecutionPlanSpec {
         assert tasks as Set == [first, second] as Set
     }
 
+    private void addToGraph(Task... tasks) {
+        executionPlan.addEntryTasks(Arrays.asList(tasks), ordinal++)
+    }
+
     private void addToGraphAndPopulate(Task... tasks) {
-        executionPlan.addEntryTasks(Arrays.asList(tasks))
+        addToGraph(tasks)
         executionPlan.determineExecutionPlan()
     }
 

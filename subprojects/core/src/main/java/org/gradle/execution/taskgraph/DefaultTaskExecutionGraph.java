@@ -88,6 +88,7 @@ public class DefaultTaskExecutionGraph implements TaskExecutionGraphInternal {
     private GraphState graphState = GraphState.EMPTY;
     private List<Task> allTasks;
     private boolean hasFiredWhenReady;
+    private int order = 0;
 
     private final Set<Task> requestedTasks = Sets.newTreeSet();
 
@@ -132,7 +133,7 @@ public class DefaultTaskExecutionGraph implements TaskExecutionGraphInternal {
     }
 
     @Override
-    public void addEntryTasks(Iterable<? extends Task> tasks, int ordinal) {
+    public void addEntryTasks(Iterable<? extends Task> tasks) {
         assert tasks != null;
 
         final Timer clock = Time.startTimer();
@@ -143,7 +144,7 @@ public class DefaultTaskExecutionGraph implements TaskExecutionGraphInternal {
             requestedTasks.add(task);
         }
 
-        executionPlan.addEntryTasks(taskSet, ordinal);
+        executionPlan.addEntryTasks(taskSet, order++);
         graphState = GraphState.DIRTY;
 
         LOGGER.debug("Timing: Creating the DAG took {}", clock.getElapsed());
