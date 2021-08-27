@@ -14,7 +14,7 @@ import model.TestType
 import model.getBucketUuid
 
 const val DEFAULT_FUNCTIONAL_TEST_BUCKET_SIZE = 50
-const val DEFAULT_LINUX_FUNCTIONAL_TEST_BUCKET_SIZE = 20
+const val DEFAULT_LINUX_FUNCTIONAL_TEST_BUCKET_SIZE = 10
 
 class FunctionalTestProject(
     val model: CIBuildModel,
