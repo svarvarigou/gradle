@@ -14,13 +14,7 @@
 					"file-temp",
 					"functional",
 					"problems",
-					"files"
-				]
-			},
-			{
-				"enableTD":true,
-				"subprojects":[
-					"tooling-api",
+					"files",
 					"internal-testing",
 					"cli",
 					"build-cache-packaging",
@@ -30,13 +24,7 @@
 					"language-jvm",
 					"tooling-api-builders",
 					"build-option",
-					"hashing"
-				]
-			},
-			{
-				"enableTD":true,
-				"subprojects":[
-					"core",
+					"hashing",
 					"execution",
 					"resources-http",
 					"internal-performance-testing",
@@ -45,14 +33,14 @@
 					"resources",
 					"process-services",
 					"internal-integ-testing",
-					"base-services",
-					"platform-jvm"
+					"base-services"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
-					"plugins",
+					"tooling-api",
+					"platform-jvm",
 					"publish",
 					"messaging",
 					"build-profile",
@@ -62,13 +50,7 @@
 					"resources-gcs",
 					"tooling-native",
 					"resources-sftp",
-					"model-groovy"
-				]
-			},
-			{
-				"enableTD":true,
-				"subprojects":[
-					"language-native",
+					"model-groovy",
 					"build-events",
 					"wrapper",
 					"resources-s3",
@@ -78,13 +60,7 @@
 					"testing-base",
 					"language-groovy",
 					"platform-base",
-					"signing"
-				]
-			},
-			{
-				"enableTD":true,
-				"subprojects":[
-					"configuration-cache",
+					"signing",
 					"antlr",
 					"persistent-cache",
 					"file-collections",
@@ -92,15 +68,15 @@
 					"test-kit",
 					"kotlin-dsl-plugins",
 					"platform-native",
-					"code-quality",
-					"enterprise",
-					"version-control"
+					"code-quality"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
-					"launcher",
+					"core",
+					"enterprise",
+					"version-control",
 					"ide-native",
 					"kotlin-dsl",
 					"plugin-development",
@@ -108,29 +84,28 @@
 					"kotlin-dsl-integ-tests",
 					"logging",
 					"workers",
-					"samples"
-				]
-			},
-			{
-				"enableTD":true,
-				"subprojects":[
-					"scala",
+					"samples",
 					"testing-native",
 					"maven",
 					"kotlin-dsl-tooling-builders",
 					"model-core",
 					"language-java",
-					"testing-jvm"
+					"testing-jvm",
+					"build-init"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
+					"plugins",
+					"language-native",
+					"configuration-cache",
+					"launcher",
+					"scala",
 					"plugin-use",
 					"composite-builds",
 					"integ-test",
-					"ide",
-					"build-init"
+					"ide"
 				]
 			},
 			{
@@ -2410,13 +2385,7 @@
 					"file-temp",
 					"functional",
 					"problems",
-					"files"
-				]
-			},
-			{
-				"enableTD":false,
-				"subprojects":[
-					"language-java",
+					"files",
 					"internal-testing",
 					"build-cache-packaging",
 					"cli",
@@ -2426,13 +2395,7 @@
 					"language-jvm",
 					"tooling-api-builders",
 					"build-option",
-					"hashing"
-				]
-			},
-			{
-				"enableTD":false,
-				"subprojects":[
-					"language-native",
+					"hashing",
 					"execution",
 					"resources-http",
 					"jvm-services",
@@ -2441,14 +2404,14 @@
 					"internal-integ-testing",
 					"resources",
 					"process-services",
-					"publish",
-					"platform-jvm"
+					"publish"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
-					"testing-jvm",
+					"language-java",
+					"platform-jvm",
 					"base-services",
 					"messaging",
 					"ear",
@@ -2464,23 +2427,29 @@
 			{
 				"enableTD":false,
 				"subprojects":[
-					"model-core",
+					"language-native",
 					"resources-sftp",
 					"build-cache-http",
 					"model-groovy",
 					"signing",
 					"diagnostics",
-					"reporting",
-					"platform-base",
-					"testing-base"
+					"reporting"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
-					"build-init",
+					"testing-jvm",
+					"platform-base",
+					"testing-base",
 					"ide-native",
-					"wrapper",
+					"wrapper"
+				]
+			},
+			{
+				"enableTD":false,
+				"subprojects":[
+					"model-core",
 					"testing-native",
 					"antlr",
 					"language-groovy",
@@ -2490,27 +2459,33 @@
 			{
 				"enableTD":false,
 				"subprojects":[
-					"workers",
+					"build-init",
 					"persistent-cache",
 					"platform-native",
-					"test-kit",
+					"test-kit"
+				]
+			},
+			{
+				"enableTD":false,
+				"subprojects":[
+					"workers",
 					"jacoco",
-					"version-control"
+					"version-control",
+					"kotlin-dsl-plugins"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"logging",
-					"kotlin-dsl-plugins",
-					"ivy"
+					"ivy",
+					"kotlin-dsl"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"samples",
-					"kotlin-dsl",
 					"enterprise",
 					"plugin-development"
 				]
@@ -2570,13 +2545,7 @@
 			{
 				"enableTD":true,
 				"subprojects":[
-					"dependency-management"
-				]
-			},
-			{
-				"enableTD":true,
-				"subprojects":[
-					"core",
+					"dependency-management",
 					"java-compiler-plugin",
 					"configuration-cache-report",
 					"base-services-groovy",
@@ -2586,13 +2555,7 @@
 					"file-temp",
 					"functional",
 					"problems",
-					"files"
-				]
-			},
-			{
-				"enableTD":true,
-				"subprojects":[
-					"language-native",
+					"files",
 					"internal-testing",
 					"build-cache-packaging",
 					"cli",
@@ -2602,13 +2565,7 @@
 					"tooling-api-builders",
 					"build-option",
 					"hashing",
-					"execution"
-				]
-			},
-			{
-				"enableTD":true,
-				"subprojects":[
-					"tooling-api",
+					"execution",
 					"resources-http",
 					"internal-performance-testing",
 					"jvm-services",
@@ -2617,14 +2574,14 @@
 					"resources",
 					"snapshots",
 					"platform-jvm",
-					"base-services",
-					"publish"
+					"base-services"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
-					"plugins",
+					"core",
+					"publish",
 					"messaging",
 					"build-profile",
 					"tooling-native",
@@ -2634,13 +2591,7 @@
 					"resources-gcs",
 					"build-events",
 					"reporting",
-					"testing-base"
-				]
-			},
-			{
-				"enableTD":true,
-				"subprojects":[
-					"configuration-cache",
+					"testing-base",
 					"core-api",
 					"antlr",
 					"resources-s3",
@@ -2650,13 +2601,7 @@
 					"signing",
 					"language-groovy",
 					"diagnostics",
-					"platform-base"
-				]
-			},
-			{
-				"enableTD":true,
-				"subprojects":[
-					"plugin-use",
+					"platform-base",
 					"wrapper",
 					"file-collections",
 					"jacoco",
@@ -2664,14 +2609,17 @@
 					"enterprise",
 					"kotlin-dsl-plugins",
 					"kotlin-dsl-integ-tests",
-					"kotlin-dsl",
-					"code-quality",
-					"platform-native"
+					"kotlin-dsl"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
+					"language-native",
+					"tooling-api",
+					"plugins",
+					"configuration-cache",
+					"plugin-use",
 					"scala",
 					"testing-jvm",
 					"integ-test",
@@ -2690,7 +2638,9 @@
 					"plugin-development",
 					"ide-native",
 					"workers",
-					"samples"
+					"samples",
+					"platform-native",
+					"code-quality"
 				]
 			}
 		],
@@ -5041,13 +4991,7 @@
 					"file-temp",
 					"functional",
 					"problems",
-					"files"
-				]
-			},
-			{
-				"enableTD":false,
-				"subprojects":[
-					"plugin-use",
+					"files",
 					"internal-testing",
 					"build-cache-packaging",
 					"cli",
@@ -5057,99 +5001,105 @@
 					"tooling-api-builders",
 					"build-option",
 					"hashing",
-					"execution"
+					"execution",
+					"resources-http",
+					"internal-performance-testing",
+					"internal-integ-testing",
+					"jvm-services",
+					"process-services"
+				]
+			},
+			{
+				"enableTD":false,
+				"subprojects":[
+					"plugin-use",
+					"snapshots",
+					"resources",
+					"platform-jvm",
+					"base-services",
+					"publish",
+					"build-profile"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"scala",
-					"resources-http",
-					"internal-performance-testing",
-					"internal-integ-testing",
-					"jvm-services",
-					"process-services",
-					"snapshots",
-					"resources",
-					"platform-jvm",
-					"base-services",
-					"publish"
+					"messaging",
+					"tooling-native",
+					"resources-gcs",
+					"ear"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"kotlin-dsl-tooling-builders",
-					"build-profile",
-					"messaging",
-					"tooling-native",
-					"resources-gcs",
-					"ear",
-					"resources-sftp"
+					"resources-sftp",
+					"build-cache",
+					"build-events"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"logging",
-					"build-cache",
-					"build-events",
 					"testing-base",
 					"build-cache-http",
 					"reporting",
-					"core-api"
+					"core-api",
+					"language-groovy",
+					"signing"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"model-core",
-					"language-groovy",
-					"signing",
 					"antlr",
 					"resources-s3",
-					"persistent-cache"
+					"persistent-cache",
+					"model-groovy",
+					"file-collections"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"composite-builds",
-					"model-groovy",
-					"file-collections",
 					"jacoco",
-					"platform-base"
+					"platform-base",
+					"diagnostics"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"build-init",
-					"diagnostics",
-					"version-control"
+					"version-control",
+					"wrapper"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"maven",
-					"wrapper",
-					"file-watching"
+					"file-watching",
+					"kotlin-dsl-plugins"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"ide-native",
-					"kotlin-dsl-plugins",
-					"kotlin-dsl-integ-tests"
+					"kotlin-dsl-integ-tests",
+					"enterprise"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"platform-native",
-					"enterprise",
 					"kotlin-dsl"
 				]
 			},
@@ -5188,19 +5138,7 @@
 			{
 				"enableTD":true,
 				"subprojects":[
-					"dependency-management"
-				]
-			},
-			{
-				"enableTD":true,
-				"subprojects":[
-					"core"
-				]
-			},
-			{
-				"enableTD":true,
-				"subprojects":[
-					"plugins",
+					"dependency-management",
 					"docs",
 					"configuration-cache",
 					"model-groovy",
@@ -5210,13 +5148,7 @@
 					"internal-integ-testing",
 					"jvm-services",
 					"snapshots",
-					"resources"
-				]
-			},
-			{
-				"enableTD":true,
-				"subprojects":[
-					"language-native",
+					"resources",
 					"process-services",
 					"base-services",
 					"platform-jvm",
@@ -5226,13 +5158,7 @@
 					"messaging",
 					"kotlin-dsl-tooling-builders",
 					"resources-gcs",
-					"ear"
-				]
-			},
-			{
-				"enableTD":true,
-				"subprojects":[
-					"plugin-use",
+					"ear",
 					"build-cache",
 					"build-events",
 					"resources-sftp",
@@ -5241,14 +5167,14 @@
 					"testing-base",
 					"build-cache-http",
 					"language-groovy",
-					"antlr",
-					"resources-s3"
+					"antlr"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
-					"launcher",
+					"core",
+					"resources-s3",
 					"signing",
 					"persistent-cache",
 					"diagnostics",
@@ -5258,43 +5184,42 @@
 					"file-collections",
 					"version-control",
 					"kotlin-dsl-plugins",
-					"tooling-api"
-				]
-			},
-			{
-				"enableTD":true,
-				"subprojects":[
-					"composite-builds",
+					"tooling-api",
 					"code-quality",
 					"platform-native",
 					"ivy",
 					"ide-native",
 					"workers",
-					"kotlin-dsl",
-					"kotlin-dsl-integ-tests",
-					"logging"
+					"kotlin-dsl"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
-					"scala",
+					"plugins",
+					"kotlin-dsl-integ-tests",
+					"logging",
 					"testing-native",
 					"maven",
 					"ide",
 					"samples",
 					"plugin-development",
-					"model-core"
+					"model-core",
+					"test-kit",
+					"testing-jvm",
+					"language-java"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
+					"language-native",
+					"plugin-use",
+					"launcher",
+					"composite-builds",
+					"scala",
 					"build-init",
-					"integ-test",
-					"language-java",
-					"testing-jvm",
-					"test-kit"
+					"integ-test"
 				]
 			},
 			{
@@ -5311,19 +5236,7 @@
 			{
 				"enableTD":true,
 				"subprojects":[
-					"dependency-management"
-				]
-			},
-			{
-				"enableTD":true,
-				"subprojects":[
-					"core"
-				]
-			},
-			{
-				"enableTD":true,
-				"subprojects":[
-					"plugins",
+					"dependency-management",
 					"docs",
 					"execution",
 					"resources-http",
@@ -5333,13 +5246,7 @@
 					"resources",
 					"process-services",
 					"snapshots",
-					"base-services"
-				]
-			},
-			{
-				"enableTD":true,
-				"subprojects":[
-					"configuration-cache",
+					"base-services",
 					"publish",
 					"platform-jvm",
 					"build-profile",
@@ -5349,13 +5256,7 @@
 					"ear",
 					"core-api",
 					"resources-sftp",
-					"reporting"
-				]
-			},
-			{
-				"enableTD":true,
-				"subprojects":[
-					"language-native",
+					"reporting",
 					"build-cache",
 					"build-events",
 					"build-cache-http",
@@ -5364,14 +5265,14 @@
 					"model-groovy",
 					"language-groovy",
 					"persistent-cache",
-					"resources-s3",
-					"signing"
+					"resources-s3"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
-					"language-java",
+					"core",
+					"signing",
 					"jacoco",
 					"diagnostics",
 					"wrapper",
@@ -5381,43 +5282,42 @@
 					"code-quality",
 					"tooling-api",
 					"version-control",
-					"platform-native"
-				]
-			},
-			{
-				"enableTD":true,
-				"subprojects":[
-					"plugin-use",
+					"platform-native",
 					"enterprise",
 					"ide-native",
 					"workers",
 					"kotlin-dsl",
 					"testing-native",
 					"kotlin-dsl-integ-tests",
-					"ide",
-					"ivy"
+					"ide"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
-					"launcher",
+					"plugins",
+					"ivy",
 					"test-kit",
 					"samples",
 					"plugin-development",
 					"logging",
 					"model-core",
-					"maven"
+					"maven",
+					"testing-jvm",
+					"integ-test",
+					"build-init"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
+					"configuration-cache",
+					"language-native",
+					"language-java",
+					"plugin-use",
+					"launcher",
 					"scala",
-					"composite-builds",
-					"build-init",
-					"integ-test",
-					"testing-jvm"
+					"composite-builds"
 				]
 			},
 			{
@@ -5446,19 +5346,7 @@
 			{
 				"enableTD":true,
 				"subprojects":[
-					"dependency-management"
-				]
-			},
-			{
-				"enableTD":true,
-				"subprojects":[
-					"core"
-				]
-			},
-			{
-				"enableTD":true,
-				"subprojects":[
-					"configuration-cache",
+					"dependency-management",
 					"docs",
 					"execution",
 					"resources-http",
@@ -5468,13 +5356,7 @@
 					"jvm-services",
 					"resources",
 					"kotlin-dsl-tooling-builders",
-					"base-services"
-				]
-			},
-			{
-				"enableTD":true,
-				"subprojects":[
-					"language-native",
+					"base-services",
 					"snapshots",
 					"platform-jvm",
 					"build-profile",
@@ -5484,13 +5366,7 @@
 					"testing-base",
 					"language-groovy",
 					"ear",
-					"resources-gcs"
-				]
-			},
-			{
-				"enableTD":true,
-				"subprojects":[
-					"plugins",
+					"resources-gcs",
 					"build-cache",
 					"build-events",
 					"resources-sftp",
@@ -5499,14 +5375,14 @@
 					"antlr",
 					"core-api",
 					"build-cache-http",
-					"resources-s3",
-					"signing"
+					"resources-s3"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
-					"language-java",
+					"core",
+					"signing",
 					"jacoco",
 					"model-groovy",
 					"tooling-api",
@@ -5516,43 +5392,42 @@
 					"platform-base",
 					"diagnostics",
 					"kotlin-dsl-plugins",
-					"version-control"
-				]
-			},
-			{
-				"enableTD":true,
-				"subprojects":[
-					"maven",
+					"version-control",
 					"test-kit",
 					"platform-native",
 					"kotlin-dsl",
 					"kotlin-dsl-integ-tests",
 					"samples",
 					"workers",
-					"launcher",
-					"ide-native",
-					"plugin-development"
+					"launcher"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
-					"testing-jvm",
+					"configuration-cache",
+					"ide-native",
+					"plugin-development",
 					"ide",
 					"scala",
 					"testing-native",
 					"build-init",
-					"composite-builds"
+					"composite-builds",
+					"model-core",
+					"ivy",
+					"plugin-use"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
+					"language-native",
+					"plugins",
+					"language-java",
+					"maven",
+					"testing-jvm",
 					"integ-test",
-					"logging",
-					"plugin-use",
-					"ivy",
-					"model-core"
+					"logging"
 				]
 			},
 			{
@@ -7565,91 +7440,91 @@
 					"process-services",
 					"jvm-services",
 					"base-services",
-					"resources"
-				]
-			},
-			{
-				"enableTD":false,
-				"subprojects":[
-					"ivy",
+					"resources",
 					"build-profile",
 					"platform-jvm",
 					"snapshots",
 					"publish",
 					"messaging",
 					"persistent-cache",
-					"testing-base",
+					"testing-base"
+				]
+			},
+			{
+				"enableTD":false,
+				"subprojects":[
+					"ivy",
 					"language-groovy",
-					"resources-gcs"
+					"resources-gcs",
+					"build-events",
+					"resources-sftp"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"composite-builds",
-					"build-events",
-					"resources-sftp",
 					"build-cache",
-					"antlr"
+					"antlr",
+					"ear"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"model-core",
-					"ear",
 					"reporting",
 					"wrapper",
-					"resources-s3"
+					"resources-s3",
+					"build-cache-http"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"build-init",
-					"build-cache-http",
 					"signing",
-					"core-api"
+					"core-api",
+					"jacoco"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"workers",
-					"jacoco",
 					"model-groovy",
-					"tooling-api"
+					"tooling-api",
+					"file-collections"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"ide",
-					"file-collections",
-					"testing-native"
+					"testing-native",
+					"code-quality"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"plugin-development",
-					"code-quality",
-					"enterprise"
+					"enterprise",
+					"platform-base"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"scala",
-					"platform-base",
-					"version-control"
+					"version-control",
+					"test-kit"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"launcher",
-					"test-kit",
 					"kotlin-dsl-plugins"
 				]
 			},
@@ -9078,13 +8953,7 @@
 					"functional",
 					"problems",
 					"files",
-					"internal-testing"
-				]
-			},
-			{
-				"enableTD":false,
-				"subprojects":[
-					"language-native",
+					"internal-testing",
 					"build-cache-packaging",
 					"cli",
 					"build-operations",
@@ -9094,13 +8963,7 @@
 					"build-option",
 					"hashing",
 					"execution",
-					"resources-http"
-				]
-			},
-			{
-				"enableTD":false,
-				"subprojects":[
-					"launcher",
+					"resources-http",
 					"internal-integ-testing",
 					"internal-performance-testing",
 					"jvm-services",
@@ -9109,14 +8972,14 @@
 					"base-services",
 					"publish",
 					"platform-jvm",
-					"messaging",
-					"build-profile"
+					"messaging"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
-					"plugin-use",
+					"language-native",
+					"build-profile",
 					"tooling-native",
 					"resources-gcs",
 					"ear",
@@ -9126,16 +8989,16 @@
 					"build-cache-http",
 					"testing-base",
 					"core-api",
-					"reporting"
+					"reporting",
+					"signing",
+					"model-groovy",
+					"antlr"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
-					"testing-jvm",
-					"signing",
-					"model-groovy",
-					"antlr",
+					"launcher",
 					"resources-s3",
 					"persistent-cache",
 					"language-groovy",
@@ -9148,21 +9011,27 @@
 			{
 				"enableTD":false,
 				"subprojects":[
-					"kotlin-dsl-tooling-builders",
+					"plugin-use",
 					"platform-native",
 					"enterprise",
 					"jacoco",
-					"kotlin-dsl-integ-tests",
-					"kotlin-dsl-plugins",
-					"samples",
-					"file-watching"
+					"kotlin-dsl-integ-tests"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
-					"language-java",
-					"kotlin-dsl",
+					"testing-jvm",
+					"kotlin-dsl-plugins",
+					"samples",
+					"file-watching",
+					"kotlin-dsl"
+				]
+			},
+			{
+				"enableTD":false,
+				"subprojects":[
+					"kotlin-dsl-tooling-builders",
 					"code-quality",
 					"testing-native",
 					"composite-builds"
@@ -9171,20 +9040,26 @@
 			{
 				"enableTD":false,
 				"subprojects":[
-					"build-init",
+					"language-java",
 					"ide",
 					"ide-native",
-					"model-core",
-					"ivy"
+					"model-core"
+				]
+			},
+			{
+				"enableTD":false,
+				"subprojects":[
+					"build-init",
+					"ivy",
+					"plugin-development",
+					"maven"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"logging",
-					"test-kit",
-					"maven",
-					"plugin-development"
+					"test-kit"
 				]
 			}
 		],
@@ -9195,13 +9070,7 @@
 			{
 				"enableTD":true,
 				"subprojects":[
-					"dependency-management"
-				]
-			},
-			{
-				"enableTD":true,
-				"subprojects":[
-					"core",
+					"dependency-management",
 					"docs",
 					"execution",
 					"resources-http",
@@ -9211,13 +9080,7 @@
 					"resources",
 					"process-services",
 					"internal-integ-testing",
-					"wrapper"
-				]
-			},
-			{
-				"enableTD":true,
-				"subprojects":[
-					"configuration-cache",
+					"wrapper",
 					"platform-jvm",
 					"publish",
 					"messaging",
@@ -9227,13 +9090,7 @@
 					"core-api",
 					"ear",
 					"build-events",
-					"resources-gcs"
-				]
-			},
-			{
-				"enableTD":true,
-				"subprojects":[
-					"language-native",
+					"resources-gcs",
 					"resources-s3",
 					"build-cache",
 					"model-groovy",
@@ -9242,14 +9099,14 @@
 					"reporting",
 					"diagnostics",
 					"testing-base",
-					"language-groovy",
-					"signing"
+					"language-groovy"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
-					"plugins",
+					"core",
+					"signing",
 					"antlr",
 					"persistent-cache",
 					"platform-base",
@@ -9259,49 +9116,42 @@
 					"file-collections",
 					"enterprise",
 					"code-quality",
-					"kotlin-dsl-plugins"
-				]
-			},
-			{
-				"enableTD":true,
-				"subprojects":[
-					"launcher",
+					"kotlin-dsl-plugins",
 					"version-control",
 					"platform-native",
 					"plugin-development",
 					"ide-native",
 					"kotlin-dsl",
 					"ide",
-					"ivy"
+					"ivy",
+					"workers",
+					"logging"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
-					"scala",
-					"workers",
-					"logging",
+					"configuration-cache",
 					"kotlin-dsl-integ-tests",
 					"samples",
-					"language-java"
-				]
-			},
-			{
-				"enableTD":true,
-				"subprojects":[
-					"composite-builds",
+					"language-java",
 					"maven",
 					"testing-native",
 					"integ-test",
-					"testing-jvm"
+					"testing-jvm",
+					"model-core",
+					"build-init"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
-					"plugin-use",
-					"build-init",
-					"model-core"
+					"language-native",
+					"plugins",
+					"launcher",
+					"scala",
+					"composite-builds",
+					"plugin-use"
 				]
 			},
 			{
@@ -9629,13 +9479,7 @@
 					"signing",
 					"samples",
 					"resources-sftp",
-					"resources-s3"
-				]
-			},
-			{
-				"enableTD":false,
-				"subprojects":[
-					"scala",
+					"resources-s3",
 					"resources-http",
 					"resources-gcs",
 					"resources",
@@ -9645,13 +9489,7 @@
 					"plugin-use",
 					"plugin-development",
 					"platform-jvm",
-					"platform-base"
-				]
-			},
-			{
-				"enableTD":false,
-				"subprojects":[
-					"test-kit",
+					"platform-base",
 					"persistent-cache",
 					"model-groovy",
 					"model-core",
@@ -9660,14 +9498,14 @@
 					"logging",
 					"language-java",
 					"kotlin-dsl-tooling-builders",
-					"kotlin-dsl-plugins",
-					"kotlin-dsl-integ-tests"
+					"kotlin-dsl-plugins"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
-					"code-quality",
+					"scala",
+					"kotlin-dsl-integ-tests",
 					"kotlin-dsl",
 					"jvm-services",
 					"ivy",
@@ -9677,33 +9515,45 @@
 					"ide",
 					"file-collections",
 					"execution",
-					"enterprise"
+					"enterprise",
+					"ear",
+					"docs",
+					"diagnostics",
+					"dependency-management",
+					"core-api",
+					"core",
+					"configuration-cache",
+					"composite-builds",
+					"build-profile",
+					"build-init",
+					"build-events",
+					"build-cache-http",
+					"build-cache",
+					"base-services",
+					"antlr",
+					"launcher",
+					"language-groovy",
+					"jacoco"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
-					"ide-native",
-					"platform-native",
-					"testing-native",
-					"jacoco",
-					"language-groovy",
-					"launcher",
-					"antlr",
-					"base-services",
-					"build-cache",
-					"build-cache-http",
-					"build-events",
-					"build-init",
-					"build-profile",
-					"composite-builds",
-					"configuration-cache",
-					"core",
-					"core-api",
-					"dependency-management",
-					"diagnostics",
-					"docs",
-					"ear"
+					"test-kit",
+					"testing-native"
+				]
+			},
+			{
+				"enableTD":false,
+				"subprojects":[
+					"code-quality",
+					"platform-native"
+				]
+			},
+			{
+				"enableTD":false,
+				"subprojects":[
+					"ide-native"
 				]
 			}
 		],
@@ -9958,13 +9808,7 @@
 					"file-temp",
 					"functional",
 					"problems",
-					"files"
-				]
-			},
-			{
-				"enableTD":true,
-				"subprojects":[
-					"persistent-cache",
+					"files",
 					"internal-testing",
 					"build-cache-packaging",
 					"cli",
@@ -9974,45 +9818,51 @@
 					"language-jvm",
 					"tooling-api-builders",
 					"build-option",
-					"hashing"
+					"hashing",
+					"execution"
+				]
+			},
+			{
+				"enableTD":true,
+				"subprojects":[
+					"persistent-cache",
+					"resources-http",
+					"internal-performance-testing",
+					"jvm-services",
+					"internal-integ-testing"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
 					"build-cache-http",
-					"execution",
-					"resources-http",
-					"internal-performance-testing",
-					"jvm-services",
-					"internal-integ-testing",
 					"process-services",
 					"resources",
-					"snapshots"
+					"snapshots",
+					"platform-jvm"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
 					"model-groovy",
-					"platform-jvm",
 					"base-services",
-					"publish"
+					"publish",
+					"messaging"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
 					"resources-s3",
-					"messaging",
-					"build-profile"
+					"build-profile",
+					"tooling-native"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
 					"antlr",
-					"tooling-native",
 					"ear"
 				]
 			},
@@ -12469,13 +12319,7 @@
 					"file-temp",
 					"functional",
 					"problems",
-					"files"
-				]
-			},
-			{
-				"enableTD":false,
-				"subprojects":[
-					"scala",
+					"files",
 					"internal-testing",
 					"build-cache-packaging",
 					"cli",
@@ -12485,13 +12329,7 @@
 					"language-jvm",
 					"tooling-api-builders",
 					"build-option",
-					"hashing"
-				]
-			},
-			{
-				"enableTD":false,
-				"subprojects":[
-					"kotlin-dsl-tooling-builders",
+					"hashing",
 					"execution",
 					"resources-http",
 					"internal-performance-testing",
@@ -12500,31 +12338,37 @@
 					"process-services",
 					"snapshots",
 					"resources",
-					"platform-jvm",
-					"base-services"
+					"platform-jvm"
+				]
+			},
+			{
+				"enableTD":false,
+				"subprojects":[
+					"scala",
+					"base-services",
+					"publish",
+					"build-profile",
+					"messaging",
+					"tooling-native",
+					"resources-gcs",
+					"ear"
+				]
+			},
+			{
+				"enableTD":false,
+				"subprojects":[
+					"kotlin-dsl-tooling-builders",
+					"resources-sftp",
+					"build-cache",
+					"build-events",
+					"testing-base",
+					"build-cache-http"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"logging",
-					"publish",
-					"build-profile",
-					"messaging",
-					"tooling-native",
-					"resources-gcs",
-					"ear",
-					"resources-sftp",
-					"build-cache",
-					"build-events",
-					"testing-base"
-				]
-			},
-			{
-				"enableTD":false,
-				"subprojects":[
-					"model-core",
-					"build-cache-http",
 					"reporting",
 					"core-api",
 					"language-groovy",
@@ -12536,44 +12380,50 @@
 			{
 				"enableTD":false,
 				"subprojects":[
-					"composite-builds",
+					"model-core",
 					"persistent-cache",
 					"model-groovy",
 					"file-collections",
-					"jacoco",
-					"platform-base"
+					"jacoco"
+				]
+			},
+			{
+				"enableTD":false,
+				"subprojects":[
+					"composite-builds",
+					"platform-base",
+					"diagnostics",
+					"version-control"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"build-init",
-					"diagnostics",
-					"version-control",
-					"wrapper"
+					"wrapper",
+					"kotlin-dsl-plugins"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"maven",
-					"kotlin-dsl-plugins",
-					"kotlin-dsl-integ-tests"
+					"kotlin-dsl-integ-tests",
+					"enterprise"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"ide-native",
-					"enterprise",
-					"kotlin-dsl"
+					"kotlin-dsl",
+					"samples"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"platform-native",
-					"samples",
 					"code-quality"
 				]
 			},
@@ -12883,13 +12733,7 @@
 					"file-temp",
 					"functional",
 					"problems",
-					"files"
-				]
-			},
-			{
-				"enableTD":true,
-				"subprojects":[
-					"signing",
+					"files",
 					"internal-testing",
 					"build-cache-packaging",
 					"cli",
@@ -12899,16 +12743,16 @@
 					"tooling-api-builders",
 					"build-option",
 					"hashing",
-					"execution"
+					"execution",
+					"resources-http",
+					"internal-performance-testing",
+					"jvm-services"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
-					"persistent-cache",
-					"resources-http",
-					"internal-performance-testing",
-					"jvm-services",
+					"signing",
 					"internal-integ-testing",
 					"process-services",
 					"resources"
@@ -12917,27 +12761,33 @@
 			{
 				"enableTD":true,
 				"subprojects":[
-					"build-cache-http",
+					"persistent-cache",
 					"snapshots",
 					"platform-jvm",
-					"base-services",
+					"base-services"
+				]
+			},
+			{
+				"enableTD":true,
+				"subprojects":[
+					"build-cache-http",
 					"publish",
-					"messaging"
+					"messaging",
+					"build-profile"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
 					"model-groovy",
-					"build-profile",
-					"tooling-native"
+					"tooling-native",
+					"ear"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
 					"resources-s3",
-					"ear",
 					"build-cache"
 				]
 			},
@@ -15316,13 +15166,7 @@
 					"file-temp",
 					"functional",
 					"problems",
-					"files"
-				]
-			},
-			{
-				"enableTD":false,
-				"subprojects":[
-					"plugin-use",
+					"files",
 					"internal-testing",
 					"build-cache-packaging",
 					"cli",
@@ -15332,99 +15176,105 @@
 					"tooling-api-builders",
 					"build-option",
 					"hashing",
-					"execution"
+					"execution",
+					"resources-http",
+					"internal-performance-testing",
+					"internal-integ-testing",
+					"jvm-services",
+					"process-services"
+				]
+			},
+			{
+				"enableTD":false,
+				"subprojects":[
+					"plugin-use",
+					"snapshots",
+					"resources",
+					"platform-jvm",
+					"base-services",
+					"publish",
+					"build-profile"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"scala",
-					"resources-http",
-					"internal-performance-testing",
-					"internal-integ-testing",
-					"jvm-services",
-					"process-services",
-					"snapshots",
-					"resources",
-					"platform-jvm",
-					"base-services",
-					"publish"
+					"messaging",
+					"tooling-native",
+					"resources-gcs",
+					"ear"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"kotlin-dsl-tooling-builders",
-					"build-profile",
-					"messaging",
-					"tooling-native",
-					"resources-gcs",
-					"ear",
-					"resources-sftp"
+					"resources-sftp",
+					"build-cache",
+					"build-events"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"logging",
-					"build-cache",
-					"build-events",
 					"testing-base",
 					"build-cache-http",
 					"reporting",
-					"core-api"
+					"core-api",
+					"language-groovy",
+					"signing"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"model-core",
-					"language-groovy",
-					"signing",
 					"antlr",
 					"resources-s3",
-					"persistent-cache"
+					"persistent-cache",
+					"model-groovy",
+					"file-collections"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"composite-builds",
-					"model-groovy",
-					"file-collections",
 					"jacoco",
-					"platform-base"
+					"platform-base",
+					"diagnostics"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"build-init",
-					"diagnostics",
-					"version-control"
+					"version-control",
+					"wrapper"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"maven",
-					"wrapper",
-					"file-watching"
+					"file-watching",
+					"kotlin-dsl-plugins"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"ide-native",
-					"kotlin-dsl-plugins",
-					"kotlin-dsl-integ-tests"
+					"kotlin-dsl-integ-tests",
+					"enterprise"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"platform-native",
-					"enterprise",
 					"kotlin-dsl"
 				]
 			},
@@ -15707,13 +15557,7 @@
 					"file-temp",
 					"functional",
 					"problems",
-					"files"
-				]
-			},
-			{
-				"enableTD":true,
-				"subprojects":[
-					"persistent-cache",
+					"files",
 					"internal-testing",
 					"build-cache-packaging",
 					"cli",
@@ -15723,45 +15567,51 @@
 					"language-jvm",
 					"tooling-api-builders",
 					"build-option",
-					"hashing"
+					"hashing",
+					"execution"
+				]
+			},
+			{
+				"enableTD":true,
+				"subprojects":[
+					"persistent-cache",
+					"resources-http",
+					"internal-performance-testing",
+					"jvm-services",
+					"internal-integ-testing"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
 					"build-cache-http",
-					"execution",
-					"resources-http",
-					"internal-performance-testing",
-					"jvm-services",
-					"internal-integ-testing",
 					"process-services",
 					"resources",
-					"snapshots"
+					"snapshots",
+					"platform-jvm"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
 					"model-groovy",
-					"platform-jvm",
 					"base-services",
-					"publish"
+					"publish",
+					"messaging"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
 					"resources-s3",
-					"messaging",
-					"build-profile"
+					"build-profile",
+					"tooling-native"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
 					"antlr",
-					"tooling-native",
 					"ear"
 				]
 			},
@@ -18218,13 +18068,7 @@
 					"file-temp",
 					"functional",
 					"problems",
-					"files"
-				]
-			},
-			{
-				"enableTD":false,
-				"subprojects":[
-					"scala",
+					"files",
 					"internal-testing",
 					"build-cache-packaging",
 					"cli",
@@ -18234,13 +18078,7 @@
 					"language-jvm",
 					"tooling-api-builders",
 					"build-option",
-					"hashing"
-				]
-			},
-			{
-				"enableTD":false,
-				"subprojects":[
-					"kotlin-dsl-tooling-builders",
+					"hashing",
 					"execution",
 					"resources-http",
 					"internal-performance-testing",
@@ -18249,31 +18087,37 @@
 					"process-services",
 					"snapshots",
 					"resources",
-					"platform-jvm",
-					"base-services"
+					"platform-jvm"
+				]
+			},
+			{
+				"enableTD":false,
+				"subprojects":[
+					"scala",
+					"base-services",
+					"publish",
+					"build-profile",
+					"messaging",
+					"tooling-native",
+					"resources-gcs",
+					"ear"
+				]
+			},
+			{
+				"enableTD":false,
+				"subprojects":[
+					"kotlin-dsl-tooling-builders",
+					"resources-sftp",
+					"build-cache",
+					"build-events",
+					"testing-base",
+					"build-cache-http"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"logging",
-					"publish",
-					"build-profile",
-					"messaging",
-					"tooling-native",
-					"resources-gcs",
-					"ear",
-					"resources-sftp",
-					"build-cache",
-					"build-events",
-					"testing-base"
-				]
-			},
-			{
-				"enableTD":false,
-				"subprojects":[
-					"model-core",
-					"build-cache-http",
 					"reporting",
 					"core-api",
 					"language-groovy",
@@ -18285,44 +18129,50 @@
 			{
 				"enableTD":false,
 				"subprojects":[
-					"composite-builds",
+					"model-core",
 					"persistent-cache",
 					"model-groovy",
 					"file-collections",
-					"jacoco",
-					"platform-base"
+					"jacoco"
+				]
+			},
+			{
+				"enableTD":false,
+				"subprojects":[
+					"composite-builds",
+					"platform-base",
+					"diagnostics",
+					"version-control"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"build-init",
-					"diagnostics",
-					"version-control",
-					"wrapper"
+					"wrapper",
+					"kotlin-dsl-plugins"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"maven",
-					"kotlin-dsl-plugins",
-					"kotlin-dsl-integ-tests"
+					"kotlin-dsl-integ-tests",
+					"enterprise"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"ide-native",
-					"enterprise",
-					"kotlin-dsl"
+					"kotlin-dsl",
+					"samples"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"platform-native",
-					"samples",
 					"code-quality"
 				]
 			},
@@ -18632,13 +18482,7 @@
 					"file-temp",
 					"functional",
 					"problems",
-					"files"
-				]
-			},
-			{
-				"enableTD":true,
-				"subprojects":[
-					"signing",
+					"files",
 					"internal-testing",
 					"build-cache-packaging",
 					"cli",
@@ -18648,16 +18492,16 @@
 					"tooling-api-builders",
 					"build-option",
 					"hashing",
-					"execution"
+					"execution",
+					"resources-http",
+					"internal-performance-testing",
+					"jvm-services"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
-					"persistent-cache",
-					"resources-http",
-					"internal-performance-testing",
-					"jvm-services",
+					"signing",
 					"internal-integ-testing",
 					"process-services",
 					"resources"
@@ -18666,27 +18510,33 @@
 			{
 				"enableTD":true,
 				"subprojects":[
-					"build-cache-http",
+					"persistent-cache",
 					"snapshots",
 					"platform-jvm",
-					"base-services",
+					"base-services"
+				]
+			},
+			{
+				"enableTD":true,
+				"subprojects":[
+					"build-cache-http",
 					"publish",
-					"messaging"
+					"messaging",
+					"build-profile"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
 					"model-groovy",
-					"build-profile",
-					"tooling-native"
+					"tooling-native",
+					"ear"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
 					"resources-s3",
-					"ear",
 					"build-cache"
 				]
 			},
@@ -21065,13 +20915,7 @@
 					"file-temp",
 					"functional",
 					"problems",
-					"files"
-				]
-			},
-			{
-				"enableTD":false,
-				"subprojects":[
-					"plugin-use",
+					"files",
 					"internal-testing",
 					"build-cache-packaging",
 					"cli",
@@ -21081,99 +20925,105 @@
 					"tooling-api-builders",
 					"build-option",
 					"hashing",
-					"execution"
+					"execution",
+					"resources-http",
+					"internal-performance-testing",
+					"internal-integ-testing",
+					"jvm-services",
+					"process-services"
+				]
+			},
+			{
+				"enableTD":false,
+				"subprojects":[
+					"plugin-use",
+					"snapshots",
+					"resources",
+					"platform-jvm",
+					"base-services",
+					"publish",
+					"build-profile"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"scala",
-					"resources-http",
-					"internal-performance-testing",
-					"internal-integ-testing",
-					"jvm-services",
-					"process-services",
-					"snapshots",
-					"resources",
-					"platform-jvm",
-					"base-services",
-					"publish"
+					"messaging",
+					"tooling-native",
+					"resources-gcs",
+					"ear"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"kotlin-dsl-tooling-builders",
-					"build-profile",
-					"messaging",
-					"tooling-native",
-					"resources-gcs",
-					"ear",
-					"resources-sftp"
+					"resources-sftp",
+					"build-cache",
+					"build-events"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"logging",
-					"build-cache",
-					"build-events",
 					"testing-base",
 					"build-cache-http",
 					"reporting",
-					"core-api"
+					"core-api",
+					"language-groovy",
+					"signing"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"model-core",
-					"language-groovy",
-					"signing",
 					"antlr",
 					"resources-s3",
-					"persistent-cache"
+					"persistent-cache",
+					"model-groovy",
+					"file-collections"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"composite-builds",
-					"model-groovy",
-					"file-collections",
 					"jacoco",
-					"platform-base"
+					"platform-base",
+					"diagnostics"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"build-init",
-					"diagnostics",
-					"version-control"
+					"version-control",
+					"wrapper"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"maven",
-					"wrapper",
-					"file-watching"
+					"file-watching",
+					"kotlin-dsl-plugins"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"ide-native",
-					"kotlin-dsl-plugins",
-					"kotlin-dsl-integ-tests"
+					"kotlin-dsl-integ-tests",
+					"enterprise"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"platform-native",
-					"enterprise",
 					"kotlin-dsl"
 				]
 			},
@@ -21456,13 +21306,7 @@
 					"problems",
 					"files",
 					"internal-testing",
-					"build-cache-packaging"
-				]
-			},
-			{
-				"enableTD":true,
-				"subprojects":[
-					"persistent-cache",
+					"build-cache-packaging",
 					"cli",
 					"build-operations",
 					"normalization-java",
@@ -21471,44 +21315,50 @@
 					"tooling-api-builders",
 					"build-option",
 					"hashing",
-					"execution",
-					"resources-http"
+					"execution"
+				]
+			},
+			{
+				"enableTD":true,
+				"subprojects":[
+					"persistent-cache",
+					"resources-http",
+					"internal-performance-testing",
+					"jvm-services",
+					"internal-integ-testing"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
 					"build-cache-http",
-					"internal-performance-testing",
-					"jvm-services",
-					"internal-integ-testing",
 					"process-services",
 					"resources",
-					"snapshots"
+					"snapshots",
+					"platform-jvm"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
 					"model-groovy",
-					"platform-jvm",
 					"base-services",
-					"publish"
+					"publish",
+					"messaging"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
 					"resources-s3",
-					"messaging",
-					"build-profile"
+					"build-profile",
+					"tooling-native"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
 					"antlr",
-					"tooling-native",
 					"ear"
 				]
 			},
@@ -21797,13 +21647,7 @@
 					"problems",
 					"files",
 					"internal-testing",
-					"build-cache-packaging"
-				]
-			},
-			{
-				"enableTD":true,
-				"subprojects":[
-					"persistent-cache",
+					"build-cache-packaging",
 					"cli",
 					"build-operations",
 					"normalization-java",
@@ -21812,44 +21656,50 @@
 					"tooling-api-builders",
 					"build-option",
 					"hashing",
-					"execution",
-					"resources-http"
+					"execution"
+				]
+			},
+			{
+				"enableTD":true,
+				"subprojects":[
+					"persistent-cache",
+					"resources-http",
+					"internal-performance-testing",
+					"jvm-services",
+					"internal-integ-testing"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
 					"build-cache-http",
-					"internal-performance-testing",
-					"jvm-services",
-					"internal-integ-testing",
 					"process-services",
 					"resources",
-					"snapshots"
+					"snapshots",
+					"platform-jvm"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
 					"model-groovy",
-					"platform-jvm",
 					"base-services",
-					"publish"
+					"publish",
+					"messaging"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
 					"resources-s3",
-					"messaging",
-					"build-profile"
+					"build-profile",
+					"tooling-native"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
 					"antlr",
-					"tooling-native",
 					"ear"
 				]
 			},
@@ -22150,13 +22000,7 @@
 					"problems",
 					"files",
 					"internal-testing",
-					"build-cache-packaging"
-				]
-			},
-			{
-				"enableTD":true,
-				"subprojects":[
-					"persistent-cache",
+					"build-cache-packaging",
 					"cli",
 					"build-operations",
 					"normalization-java",
@@ -22165,44 +22009,50 @@
 					"tooling-api-builders",
 					"build-option",
 					"hashing",
-					"execution",
-					"resources-http"
+					"execution"
+				]
+			},
+			{
+				"enableTD":true,
+				"subprojects":[
+					"persistent-cache",
+					"resources-http",
+					"internal-performance-testing",
+					"jvm-services",
+					"internal-integ-testing"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
 					"build-cache-http",
-					"internal-performance-testing",
-					"jvm-services",
-					"internal-integ-testing",
 					"process-services",
 					"resources",
-					"snapshots"
+					"snapshots",
+					"platform-jvm"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
 					"model-groovy",
-					"platform-jvm",
 					"base-services",
-					"publish"
+					"publish",
+					"messaging"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
 					"resources-s3",
-					"messaging",
-					"build-profile"
+					"build-profile",
+					"tooling-native"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
 					"antlr",
-					"tooling-native",
 					"ear"
 				]
 			},
@@ -24659,13 +24509,7 @@
 					"problems",
 					"files",
 					"internal-testing",
-					"build-cache-packaging"
-				]
-			},
-			{
-				"enableTD":false,
-				"subprojects":[
-					"scala",
+					"build-cache-packaging",
 					"cli",
 					"build-operations",
 					"normalization-java",
@@ -24675,13 +24519,7 @@
 					"build-option",
 					"hashing",
 					"execution",
-					"resources-http"
-				]
-			},
-			{
-				"enableTD":false,
-				"subprojects":[
-					"kotlin-dsl-tooling-builders",
+					"resources-http",
 					"internal-performance-testing",
 					"internal-integ-testing",
 					"jvm-services",
@@ -24690,78 +24528,90 @@
 					"resources",
 					"platform-jvm",
 					"base-services",
-					"publish",
-					"build-profile"
+					"publish"
+				]
+			},
+			{
+				"enableTD":false,
+				"subprojects":[
+					"scala",
+					"build-profile",
+					"messaging",
+					"tooling-native",
+					"resources-gcs",
+					"ear",
+					"resources-sftp"
+				]
+			},
+			{
+				"enableTD":false,
+				"subprojects":[
+					"kotlin-dsl-tooling-builders",
+					"build-cache",
+					"build-events",
+					"testing-base",
+					"build-cache-http"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"logging",
-					"messaging",
-					"tooling-native",
-					"resources-gcs",
-					"ear",
-					"resources-sftp",
-					"build-cache",
-					"build-events",
-					"testing-base",
-					"build-cache-http",
-					"reporting"
+					"reporting",
+					"core-api",
+					"language-groovy",
+					"signing",
+					"antlr",
+					"resources-s3"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"model-core",
-					"core-api",
-					"language-groovy",
-					"signing",
-					"antlr",
-					"resources-s3",
-					"persistent-cache"
+					"persistent-cache",
+					"model-groovy",
+					"file-collections",
+					"jacoco"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"composite-builds",
-					"model-groovy",
-					"file-collections",
-					"jacoco",
-					"platform-base"
+					"platform-base",
+					"diagnostics",
+					"version-control"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"build-init",
-					"diagnostics",
-					"version-control",
-					"wrapper"
+					"wrapper",
+					"kotlin-dsl-plugins"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"maven",
-					"kotlin-dsl-plugins",
-					"kotlin-dsl-integ-tests"
+					"kotlin-dsl-integ-tests",
+					"enterprise"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"ide-native",
-					"enterprise",
-					"kotlin-dsl"
+					"kotlin-dsl",
+					"samples"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"platform-native",
-					"samples",
 					"code-quality"
 				]
 			},
@@ -25037,13 +24887,7 @@
 					"problems",
 					"files",
 					"internal-testing",
-					"build-cache-packaging"
-				]
-			},
-			{
-				"enableTD":true,
-				"subprojects":[
-					"persistent-cache",
+					"build-cache-packaging",
 					"cli",
 					"build-operations",
 					"normalization-java",
@@ -25052,44 +24896,50 @@
 					"tooling-api-builders",
 					"build-option",
 					"hashing",
-					"execution",
-					"resources-http"
+					"execution"
+				]
+			},
+			{
+				"enableTD":true,
+				"subprojects":[
+					"persistent-cache",
+					"resources-http",
+					"internal-performance-testing",
+					"jvm-services",
+					"internal-integ-testing"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
 					"build-cache-http",
-					"internal-performance-testing",
-					"jvm-services",
-					"internal-integ-testing",
 					"process-services",
 					"resources",
-					"snapshots"
+					"snapshots",
+					"platform-jvm"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
 					"model-groovy",
-					"platform-jvm",
 					"base-services",
-					"publish"
+					"publish",
+					"messaging"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
 					"resources-s3",
-					"messaging",
-					"build-profile"
+					"build-profile",
+					"tooling-native"
 				]
 			},
 			{
 				"enableTD":true,
 				"subprojects":[
 					"antlr",
-					"tooling-native",
 					"ear"
 				]
 			},
@@ -27546,13 +27396,7 @@
 					"problems",
 					"files",
 					"internal-testing",
-					"build-cache-packaging"
-				]
-			},
-			{
-				"enableTD":false,
-				"subprojects":[
-					"scala",
+					"build-cache-packaging",
 					"cli",
 					"build-operations",
 					"normalization-java",
@@ -27562,13 +27406,7 @@
 					"build-option",
 					"hashing",
 					"execution",
-					"resources-http"
-				]
-			},
-			{
-				"enableTD":false,
-				"subprojects":[
-					"kotlin-dsl-tooling-builders",
+					"resources-http",
 					"internal-performance-testing",
 					"internal-integ-testing",
 					"jvm-services",
@@ -27577,78 +27415,90 @@
 					"resources",
 					"platform-jvm",
 					"base-services",
-					"publish",
-					"build-profile"
+					"publish"
+				]
+			},
+			{
+				"enableTD":false,
+				"subprojects":[
+					"scala",
+					"build-profile",
+					"messaging",
+					"tooling-native",
+					"resources-gcs",
+					"ear",
+					"resources-sftp"
+				]
+			},
+			{
+				"enableTD":false,
+				"subprojects":[
+					"kotlin-dsl-tooling-builders",
+					"build-cache",
+					"build-events",
+					"testing-base",
+					"build-cache-http"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"logging",
-					"messaging",
-					"tooling-native",
-					"resources-gcs",
-					"ear",
-					"resources-sftp",
-					"build-cache",
-					"build-events",
-					"testing-base",
-					"build-cache-http",
-					"reporting"
+					"reporting",
+					"core-api",
+					"language-groovy",
+					"signing",
+					"antlr",
+					"resources-s3"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"model-core",
-					"core-api",
-					"language-groovy",
-					"signing",
-					"antlr",
-					"resources-s3",
-					"persistent-cache"
+					"persistent-cache",
+					"model-groovy",
+					"file-collections",
+					"jacoco"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"composite-builds",
-					"model-groovy",
-					"file-collections",
-					"jacoco",
-					"platform-base"
+					"platform-base",
+					"diagnostics",
+					"version-control"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"build-init",
-					"diagnostics",
-					"version-control",
-					"wrapper"
+					"wrapper",
+					"kotlin-dsl-plugins"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"maven",
-					"kotlin-dsl-plugins",
-					"kotlin-dsl-integ-tests"
+					"kotlin-dsl-integ-tests",
+					"enterprise"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"ide-native",
-					"enterprise",
-					"kotlin-dsl"
+					"kotlin-dsl",
+					"samples"
 				]
 			},
 			{
 				"enableTD":false,
 				"subprojects":[
 					"platform-native",
-					"samples",
 					"code-quality"
 				]
 			},
