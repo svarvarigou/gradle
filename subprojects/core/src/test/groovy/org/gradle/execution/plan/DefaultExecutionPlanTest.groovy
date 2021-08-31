@@ -40,7 +40,7 @@ import static org.gradle.util.internal.WrapUtil.toList
 class DefaultExecutionPlanTest extends AbstractExecutionPlanSpec {
     DefaultExecutionPlan executionPlan
     def workerLease = Mock(WorkerLeaseRegistry.WorkerLease)
-    int ordinal = 0
+    int order = 0
 
     def setup() {
         def taskNodeFactory = new TaskNodeFactory(thisBuild, Stub(DocumentationRegistry), Stub(IncludedBuildTaskGraph))
@@ -883,7 +883,7 @@ class DefaultExecutionPlanTest extends AbstractExecutionPlanSpec {
     }
 
     private void addToGraph(List tasks) {
-        executionPlan.addEntryTasks(tasks)
+        executionPlan.addEntryTasks(tasks, order++)
     }
 
     private void addToGraphAndPopulate(List tasks) {

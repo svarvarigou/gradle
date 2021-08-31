@@ -739,7 +739,7 @@ public class DefaultExecutionPlan implements ExecutionPlan {
                 MutationInfo producingNodeMutations = producingNode.getMutationInfo();
                 assert !producingNodeMutations.consumingNodes.isEmpty();
                 for (Node consumer : producingNodeMutations.consumingNodes) {
-                    if (doesConsumerDependOnDestroyer(consumer, destroyer)) {
+                    if (taskDependencyBetween(consumer, destroyer)) {
                         // If there's an explicit dependency from consuming node to destroyer,
                         // then we accept that as the will of the user
                         continue;
@@ -752,19 +752,20 @@ public class DefaultExecutionPlan implements ExecutionPlan {
         return false;
     }
 
-    private boolean doesConsumerDependOnDestroyer(Node consumer, Node destroyer) {
-        if (consumer == destroyer) {
+    // returns true if node1 has a direct or transitive dependency on node2
+    private boolean taskDependencyBetween(Node node1, Node node2) {
+        if (node1 == node2) {
             return true;
         }
-        Pair<Node, Node> nodePair = Pair.of(consumer, destroyer);
+        Pair<Node, Node> nodePair = Pair.of(node1, node2);
         if (reachableCache.get(nodePair) != null) {
             return reachableCache.get(nodePair);
         }
 
         boolean reachable = false;
-        for (Node dependency : consumer.getAllSuccessors()) {
+        for (Node dependency : node1.getAllSuccessors()) {
             if (!dependency.isComplete()) {
-                if (doesConsumerDependOnDestroyer(dependency, destroyer)) {
+                if (taskDependencyBetween(dependency, node2)) {
                     reachable = true;
                 }
             }
@@ -802,11 +803,12 @@ public class DefaultExecutionPlan implements ExecutionPlan {
         return false;
     }
 
-    // Returns true if node2 was added to the task graph earlier than node1
+    // Returns true if node2 was added to the task graph earlier than node1 and node1 has not been explicitly or implicitly ordered before node2
     private boolean taskShouldRunEarlier(Node node1, Node node2) {
         return !node2.isComplete()
             && node2 instanceof TaskNode && node1 instanceof TaskNode
-            && ((TaskNode) node1).getOrdinal() > ((TaskNode) node2).getOrdinal();
+            && ((TaskNode) node1).hasHigherOrderThan((TaskNode) node2)
+            && !taskDependencyBetween(node2, node1);
     }
 
     private void recordNodeExecutionStarted(Node node) {

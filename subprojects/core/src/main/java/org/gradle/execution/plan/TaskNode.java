@@ -190,4 +190,11 @@ public abstract class TaskNode extends Node {
             this.ordinal = ordinal;
         }
     }
+
+    // returns true if this node was added to the task graph after the provided node
+    public boolean hasHigherOrderThan(TaskNode otherNode) {
+        return getOrdinal() == UNKNOWN_ORDINAL ||
+            otherNode.getOrdinal() != UNKNOWN_ORDINAL &&
+                getOrdinal() > otherNode.getOrdinal();
+    }
 }
