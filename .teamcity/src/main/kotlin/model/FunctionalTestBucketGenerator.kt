@@ -10,7 +10,7 @@ import java.io.File
 import java.util.LinkedList
 
 const val MASTER_CHECK_CONFIGURATION = "Gradle_Master_Check"
-const val MAX_PROJECT_NUMBER_IN_BUCKET = 30
+const val MAX_PROJECT_NUMBER_IN_BUCKET = 50
 
 /**
  * Process test-class-data.json and generates test-buckets.json
