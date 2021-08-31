@@ -35,6 +35,7 @@ import org.gradle.internal.service.scopes.ServiceScope;
 import org.gradle.plugin.use.PluginId;
 import org.gradle.plugin.use.internal.DefaultPluginId;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.io.File;
 import java.net.URISyntaxException;
@@ -62,6 +63,14 @@ public class TaskNodeFactory {
 
     public Set<Task> getTasks() {
         return nodes.keySet();
+    }
+
+    public TaskNode getNode(Task task) {
+        TaskNode node = nodes.get(task);
+        if (node == null) {
+            throw new IllegalStateException("Node for " + task.getPath() + " has not been created yet.");
+        }
+        return node;
     }
 
     public TaskNode getOrCreateNode(Task task, int ordinal) {
