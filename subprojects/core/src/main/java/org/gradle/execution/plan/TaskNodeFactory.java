@@ -65,12 +65,9 @@ public class TaskNodeFactory {
         return nodes.keySet();
     }
 
+    @Nullable
     public TaskNode getNode(Task task) {
-        TaskNode node = nodes.get(task);
-        if (node == null) {
-            throw new IllegalStateException("Node for " + task.getPath() + " has not been created yet.");
-        }
-        return node;
+        return nodes.get(task);
     }
 
     public TaskNode getOrCreateNode(Task task, int ordinal) {
