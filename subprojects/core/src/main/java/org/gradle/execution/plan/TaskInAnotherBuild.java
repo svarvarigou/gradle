@@ -23,6 +23,7 @@ import org.gradle.api.internal.TaskInternal;
 import org.gradle.api.internal.project.ProjectInternal;
 import org.gradle.composite.internal.IncludedBuildTaskGraph;
 import org.gradle.composite.internal.IncludedBuildTaskResource;
+import org.gradle.composite.internal.TaskIdentifier;
 import org.gradle.internal.Actions;
 import org.gradle.internal.resources.ResourceLock;
 import org.gradle.util.Path;
@@ -38,7 +39,8 @@ public class TaskInAnotherBuild extends TaskNode {
         int ordinal
     ) {
         BuildIdentifier targetBuild = buildIdentifierOf(task);
-        IncludedBuildTaskResource taskResource = taskGraph.locateTask(targetBuild, task);
+        TaskIdentifier taskIdentifier = TaskIdentifier.of(task, ordinal);
+        IncludedBuildTaskResource taskResource = taskGraph.locateTask(targetBuild, taskIdentifier);
         return new TaskInAnotherBuild(task.getIdentityPath(), task.getPath(), targetBuild, taskResource, ordinal);
     }
 
@@ -48,7 +50,8 @@ public class TaskInAnotherBuild extends TaskNode {
         IncludedBuildTaskGraph taskGraph,
         int ordinal
     ) {
-        IncludedBuildTaskResource taskResource = taskGraph.locateTask(targetBuild, taskPath);
+        TaskIdentifier taskIdentifier = TaskIdentifier.of(taskPath, ordinal);
+        IncludedBuildTaskResource taskResource = taskGraph.locateTask(targetBuild, taskIdentifier);
         Path taskIdentityPath = Path.path(targetBuild.getName()).append(Path.path(taskPath));
         return new TaskInAnotherBuild(taskIdentityPath, taskPath, targetBuild, taskResource, ordinal);
     }

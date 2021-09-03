@@ -40,6 +40,15 @@ public interface TaskExecutionGraphInternal extends TaskExecutionGraph {
     void addEntryTasks(Iterable<? extends Task> tasks);
 
     /**
+     * Adds the given tasks to this graph with the given order. Tasks are executed in an
+     * arbitrary order. The tasks are executed before any tasks from a subsequent call to this
+     * method are executed.
+     *
+     * <p>Does not add the dependencies of the tasks to this graph.</p>
+     */
+    void addEntryTasks(Iterable<? extends Task> tasks, int ordinal);
+
+    /**
      * Adds the given nodes to this graph.
      *
      * <p>Does not add the dependencies of the nodes to this graph.</p>

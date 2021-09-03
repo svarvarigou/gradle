@@ -26,13 +26,7 @@ public interface IncludedBuildController {
      * Locates a task node in this build's work graph for use in another build's work graph.
      * Does not schedule the task for execution, use {@link #queueForExecution(ExportedTaskNode)} to queue the task for execution.
      */
-    ExportedTaskNode locateTask(TaskInternal task);
-
-    /**
-     * Locates a task node in this build's work graph for use in another build's work graph.
-     * Does not schedule the task for execution, use {@link #queueForExecution(ExportedTaskNode)} to queue the task for execution.
-     */
-    ExportedTaskNode locateTask(String taskPath);
+    ExportedTaskNode locateTask(TaskIdentifier taskIdentifier);
 
     /**
      * Schedules any queued tasks. When this method returns true, then some tasks where scheduled for this build and

@@ -129,20 +129,11 @@ public class DefaultIncludedBuildTaskGraph implements IncludedBuildTaskGraph, Cl
     }
 
     @Override
-    public IncludedBuildTaskResource locateTask(BuildIdentifier targetBuild, TaskInternal task) {
+    public IncludedBuildTaskResource locateTask(BuildIdentifier targetBuild, TaskIdentifier taskIdentifier) {
         return withState(() -> {
             assertCanLocateTask();
             IncludedBuildController buildController = includedBuilds.getBuildController(targetBuild);
-            return new TaskBackedResource(buildController, buildController.locateTask(task));
-        });
-    }
-
-    @Override
-    public IncludedBuildTaskResource locateTask(BuildIdentifier targetBuild, String taskPath) {
-        return withState(() -> {
-            assertCanLocateTask();
-            IncludedBuildController buildController = includedBuilds.getBuildController(targetBuild);
-            return new TaskBackedResource(buildController, buildController.locateTask(taskPath));
+            return new TaskBackedResource(buildController, buildController.locateTask(taskIdentifier));
         });
     }
 

@@ -42,7 +42,9 @@ class DestroyerTaskIntegrationTest extends AbstractIntegrationSpec {
         succeeds(cleanBar.path, generate.path)
 
         then:
-        result.assertTasksExecutedInOrder(cleanFoo.fullPath, any(cleanBar.fullPath, generateFoo.fullPath), generateBar.fullPath, generate.fullPath)
+        result.assertTaskOrder(cleanFoo.fullPath, cleanBar.fullPath)
+        result.assertTaskOrder(cleanFoo.fullPath, generateFoo.fullPath, generate.fullPath)
+        result.assertTaskOrder(cleanBar.fullPath, generateBar.fullPath, generate.fullPath)
     }
 
     def "can have destroyer task depend on a task in another build"() {
@@ -62,7 +64,53 @@ class DestroyerTaskIntegrationTest extends AbstractIntegrationSpec {
         succeeds(cleanBar.path, generate.path)
 
         then:
-        result.assertTasksExecutedInOrder(cleanFoo.fullPath, any(cleanBar.fullPath, generateFoo.fullPath), generateBar.fullPath, generate.fullPath)
+        result.assertTaskOrder(cleanFoo.fullPath, cleanBar.fullPath)
+        result.assertTaskOrder(cleanFoo.fullPath, generateFoo.fullPath, generate.fullPath)
+        result.assertTaskOrder(cleanBar.fullPath, generateBar.fullPath, generate.fullPath)
+    }
+
+    def "can order destroyer tasks after producer tasks with a dependency in another project"() {
+        def foo = subproject(':foo')
+        def bar = subproject(':bar')
+
+        def cleanFoo = foo.task('cleanFoo').destroys('build/foo')
+        def cleanBar = bar.task('cleanBar').destroys('build/bar').dependsOn(cleanFoo)
+        def generateFoo = foo.task('generateFoo').produces('build/foo')
+        def generateBar = bar.task('generateBar').produces('build/bar')
+        def generate = rootBuild.task('generate').dependsOn(generateBar).dependsOn(generateFoo)
+
+        writeAllFiles()
+
+        when:
+        args '--parallel', '--max-workers=2'
+        succeeds(generate.path, cleanBar.path)
+
+        then:
+        result.assertTaskOrder(cleanFoo.fullPath, cleanBar.fullPath)
+        result.assertTaskOrder(generateFoo.fullPath, any(generate.fullPath, cleanFoo.fullPath))
+        result.assertTaskOrder(generateBar.fullPath, any(generate.fullPath, cleanBar.fullPath))
+    }
+
+    def "can order destroyer task after producer tasks with a dependency in another build"() {
+        def foo = includedBuild('child').subproject(':foo')
+        def bar = subproject(':bar')
+
+        def cleanFoo = foo.task('cleanFoo').destroys('build/foo')
+        def cleanBar = bar.task('cleanBar').destroys('build/bar').dependsOn(cleanFoo)
+        def generateFoo = foo.task('generateFoo').produces('build/foo')
+        def generateBar = bar.task('generateBar').produces('build/bar')
+        def generate = rootBuild.task('generate').dependsOn(generateBar).dependsOn(generateFoo)
+
+        writeAllFiles()
+
+        when:
+        args '--parallel', '--max-workers=2'
+        succeeds(generate.path, cleanBar.path)
+
+        then:
+        result.assertTaskOrder(cleanFoo.fullPath, cleanBar.fullPath)
+        result.assertTaskOrder(generateFoo.fullPath, any(generate.fullPath, cleanFoo.fullPath))
+        result.assertTaskOrder(generateBar.fullPath, any(generate.fullPath, cleanBar.fullPath))
     }
 
     void writeAllFiles() {

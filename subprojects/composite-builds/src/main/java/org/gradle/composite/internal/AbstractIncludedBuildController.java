@@ -54,15 +54,9 @@ abstract class AbstractIncludedBuildController implements IncludedBuildControlle
     }
 
     @Override
-    public ExportedTaskNode locateTask(TaskInternal task) {
+    public ExportedTaskNode locateTask(TaskIdentifier taskIdentifier) {
         assertInState(State.DiscoveringTasks);
-        return build.getWorkGraph().locateTask(task);
-    }
-
-    @Override
-    public ExportedTaskNode locateTask(String taskPath) {
-        assertInState(State.DiscoveringTasks);
-        return build.getWorkGraph().locateTask(taskPath);
+        return build.getWorkGraph().locateTask(taskIdentifier);
     }
 
     @Override
