@@ -17,7 +17,6 @@
 package org.gradle.composite.internal;
 
 import org.gradle.api.artifacts.component.BuildIdentifier;
-import org.gradle.api.internal.TaskInternal;
 import org.gradle.internal.build.ExecutionResult;
 import org.gradle.internal.service.scopes.Scopes;
 import org.gradle.internal.service.scopes.ServiceScope;

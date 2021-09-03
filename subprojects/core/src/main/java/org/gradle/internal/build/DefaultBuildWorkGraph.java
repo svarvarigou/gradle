@@ -21,14 +21,11 @@ import org.gradle.api.internal.TaskInternal;
 import org.gradle.api.internal.project.ProjectStateRegistry;
 import org.gradle.composite.internal.IncludedBuildTaskResource;
 import org.gradle.composite.internal.TaskIdentifier;
-import org.gradle.execution.plan.TaskNode;
 import org.gradle.execution.taskgraph.TaskExecutionGraphInternal;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class DefaultBuildWorkGraph implements BuildWorkGraph {

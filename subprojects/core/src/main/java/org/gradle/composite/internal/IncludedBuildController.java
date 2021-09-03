@@ -15,7 +15,6 @@
  */
 package org.gradle.composite.internal;
 
-import org.gradle.api.internal.TaskInternal;
 import org.gradle.internal.build.ExecutionResult;
 import org.gradle.internal.build.ExportedTaskNode;
 

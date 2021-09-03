@@ -16,7 +16,6 @@
 
 package org.gradle.internal.build;
 
-import org.gradle.api.internal.TaskInternal;
 import org.gradle.composite.internal.TaskIdentifier;
 
 import java.util.Collection;

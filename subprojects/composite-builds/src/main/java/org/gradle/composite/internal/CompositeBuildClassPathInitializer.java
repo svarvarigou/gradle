@@ -21,6 +21,7 @@ import org.gradle.api.artifacts.component.BuildIdentifier;
 import org.gradle.api.internal.TaskInternal;
 import org.gradle.api.internal.initialization.ScriptClassPathInitializer;
 import org.gradle.api.internal.project.ProjectInternal;
+import org.gradle.execution.plan.TaskNode;
 import org.gradle.internal.Pair;
 import org.gradle.internal.build.BuildState;
 
@@ -52,7 +53,8 @@ public class CompositeBuildClassPathInitializer implements ScriptClassPathInitia
             includedBuildTaskGraph.withNewTaskGraph(() -> {
                 includedBuildTaskGraph.prepareTaskGraph(() -> {
                     for (Pair<BuildIdentifier, TaskInternal> task : tasksToBuild) {
-                        includedBuildTaskGraph.locateTask(task.left, task.right).queueForExecution();
+                        TaskIdentifier taskIdentifier = TaskIdentifier.of(task.right, TaskNode.UNKNOWN_ORDINAL);
+                        includedBuildTaskGraph.locateTask(task.left, taskIdentifier).queueForExecution();
                     }
                     includedBuildTaskGraph.populateTaskGraphs();
                 });

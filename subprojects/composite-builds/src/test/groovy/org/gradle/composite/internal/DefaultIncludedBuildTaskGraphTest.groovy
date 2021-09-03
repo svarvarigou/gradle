@@ -18,6 +18,7 @@ package org.gradle.composite.internal
 
 import org.gradle.api.internal.artifacts.DefaultBuildIdentifier
 import org.gradle.api.internal.project.ProjectStateRegistry
+import org.gradle.execution.plan.TaskNode
 import org.gradle.internal.build.BuildStateRegistry
 import org.gradle.internal.concurrent.ExecutorFactory
 import org.gradle.internal.operations.TestBuildOperationExecutor
@@ -29,7 +30,7 @@ class DefaultIncludedBuildTaskGraphTest extends Specification {
 
     def "cannot schedule tasks when graph has not been created"() {
         when:
-        graph.locateTask(DefaultBuildIdentifier.ROOT, ":task").queueForExecution()
+        graph.locateTask(DefaultBuildIdentifier.ROOT, taskIdentifier(":task")).queueForExecution()
 
         then:
         def e = thrown(IllegalStateException)
@@ -39,7 +40,7 @@ class DefaultIncludedBuildTaskGraphTest extends Specification {
     def "cannot schedule tasks when after graph has finished execution"() {
         when:
         graph.withNewTaskGraph { 12 }
-        graph.locateTask(DefaultBuildIdentifier.ROOT, ":task").queueForExecution()
+        graph.locateTask(DefaultBuildIdentifier.ROOT, taskIdentifier(":task")).queueForExecution()
 
         then:
         def e = thrown(IllegalStateException)
@@ -49,7 +50,7 @@ class DefaultIncludedBuildTaskGraphTest extends Specification {
     def "cannot schedule tasks when graph is not yet being prepared for execution"() {
         when:
         graph.withNewTaskGraph {
-            graph.locateTask(DefaultBuildIdentifier.ROOT, ":task").queueForExecution()
+            graph.locateTask(DefaultBuildIdentifier.ROOT, taskIdentifier(":task")).queueForExecution()
         }
 
         then:
@@ -63,7 +64,7 @@ class DefaultIncludedBuildTaskGraphTest extends Specification {
             graph.prepareTaskGraph {
                 graph.populateTaskGraphs()
             }
-            graph.locateTask(DefaultBuildIdentifier.ROOT, ":task").queueForExecution()
+            graph.locateTask(DefaultBuildIdentifier.ROOT, taskIdentifier(":task")).queueForExecution()
         }
 
         then:
@@ -78,7 +79,7 @@ class DefaultIncludedBuildTaskGraphTest extends Specification {
                 graph.populateTaskGraphs()
             }
             graph.startTaskExecution()
-            graph.locateTask(DefaultBuildIdentifier.ROOT, ":task").queueForExecution()
+            graph.locateTask(DefaultBuildIdentifier.ROOT, taskIdentifier(":task")).queueForExecution()
         }
 
         then:
@@ -94,11 +95,15 @@ class DefaultIncludedBuildTaskGraphTest extends Specification {
             }
             graph.startTaskExecution()
             graph.awaitTaskCompletion()
-            graph.locateTask(DefaultBuildIdentifier.ROOT, ":task").queueForExecution()
+            graph.locateTask(DefaultBuildIdentifier.ROOT, taskIdentifier(":task")).queueForExecution()
         }
 
         then:
         def e = thrown(IllegalStateException)
         e.message == "Work graph is in an unexpected state: Finished"
+    }
+
+    TaskIdentifier taskIdentifier(String taskPath) {
+        return TaskIdentifier.of(taskPath, TaskNode.UNKNOWN_ORDINAL)
     }
 }
